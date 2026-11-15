@@ -6,7 +6,7 @@ The "Launching soon" page that findigo.in shows until the Findigo app goes live.
 
 Edit `index.html` and push to `main`. GitHub Pages republishes it in a minute or two (a phone may need a reload).
 
-- **Headline words** ("Find **a photographer** near you."): the `words` list in the `<script>` at the bottom. "a photographer" is the longest that fits a small phone.
+- **Headline words** ("Find **a used iPhone** near you."): the `words` list in the `<script>` at the bottom, and the first one also in the `#rotator` span so it shows before the script runs. Keep each about as short as "a bridal lehenga" or "a makeup artist", the longest that fit a 320 px phone; "a wedding planner" is already too wide.
 - **Countdown**: set `data-launch` on `<main>`, for example `data-launch="2026-12-01T10:00:00+05:30"` (India time). Empty means no countdown.
 - **Share message**: `MESSAGE` in the script, and the same words in the WhatsApp link on the `#share` button.
 - **Link preview** (WhatsApp, Instagram, X): the `og:` tags in `<head>` and `share-card.png`.
