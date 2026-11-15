@@ -25,14 +25,12 @@ Preview on your machine: `python3 -m http.server 8080`, then open http://localho
 | A | @ | 185.199.109.153 |
 | A | @ | 185.199.110.153 |
 | A | @ | 185.199.111.153 |
-| AAAA | @ | 2606:50c0:8000::153 |
-| AAAA | @ | 2606:50c0:8001::153 |
-| AAAA | @ | 2606:50c0:8002::153 |
-| AAAA | @ | 2606:50c0:8003::153 |
 | CNAME | www | sarkhailstorm.github.io |
+
+GitHub's `AAAA` (IPv6) records are optional and left out on purpose: phones and networks on IPv6 still reach the page over IPv4, and there is nothing extra to remove on launch day.
 
 ## Launch day
 
 1. A day before, lower the TTL of the `@` and `www` records to 300 seconds.
-2. Point `@` and `www` at the app's server. Replace **all** of GitHub's `A` **and** `AAAA` records; a leftover `AAAA` keeps showing this page to people on IPv6, which is most mobile users in India.
+2. Point `@` and `www` at the app's server: replace all four of GitHub's `A` records and the `www` `CNAME`. If any `AAAA` record was added for GitHub, delete it too, or people on IPv6 keep seeing this page.
 3. In this repo's **Settings → Pages**, remove the custom domain and **Unpublish site**, then archive or delete the repo.
