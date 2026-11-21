@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Findigo · Launching soon</title>
-    <meta name="description" content="Find trusted local businesses, professionals, jobs and things for sale near you, new and used, with delivery from local stores. Findigo is launching soon at findigo.in.">
+    <meta name="description" content="Find trusted local businesses, professionals and jobs near you. Book a visit, an appointment or a doctor's token, and buy new and used things, with delivery from local stores. Findigo is launching soon at findigo.in.">
     <link rel="canonical" href="https://findigo.in/">
     <meta name="theme-color" content="#f5f8ff" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#0a1020" media="(prefers-color-scheme: dark)">
@@ -14,7 +14,7 @@
     <meta property="og:site_name" content="Findigo">
     <meta property="og:url" content="https://findigo.in/">
     <meta property="og:title" content="Findigo is launching soon">
-    <meta property="og:description" content="Find trusted local businesses, professionals, jobs and things for sale near you, new and used, with delivery from local stores.">
+    <meta property="og:description" content="Find trusted local businesses, professionals and jobs near you. Book a visit, an appointment or a doctor's token, and buy new and used things, with delivery from local stores.">
     <meta property="og:image" content="https://findigo.in/share-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -371,9 +371,9 @@
         margin: 0;
         padding: 2px 0;
         list-style: none;
-        animation: marquee 80s linear infinite;
+        animation: marquee 120s linear infinite;
       }
-      .marquee.sale .track { animation-duration: 60s; }
+      .marquee.sale .track { animation-duration: 70s; }
       .marquee.reverse .track { animation-direction: reverse; }
       .marquee:hover .track { animation-play-state: paused; }
       .chip {
@@ -390,6 +390,197 @@
       }
       .chip::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--primary-text); flex: none; }
       .marquee.sale .chip::before { background: var(--orange); }
+
+      /* ---------- Booking: a live token card, a visit and an appointment ---------- */
+      .book {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 980px;
+        margin-top: clamp(48px, 8vh, 80px);
+      }
+      .book-head { max-width: 640px; margin: 0 auto; text-align: center; }
+      .eyebrow {
+        display: inline-flex;
+        padding: 5px 12px;
+        border-radius: 999px;
+        background: var(--tile);
+        color: var(--primary-text);
+        font-size: 13px;
+        font-weight: 650;
+        letter-spacing: 0.02em;
+      }
+      .book h2 {
+        margin-top: 12px;
+        font-size: clamp(1.65rem, 5vw, 2.4rem);
+        font-weight: 800;
+        line-height: 1.12;
+        letter-spacing: -0.03em;
+        text-wrap: balance;
+      }
+      .book-head p:last-child { margin-top: 10px; color: var(--muted); font-size: clamp(1rem, 2.2vw, 1.1rem); text-wrap: balance; }
+      .book-grid {
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .token-card { grid-column: 1 / -1; }
+      @media (min-width: 760px) {
+        .book-grid { grid-template-columns: 1.1fr 1fr; gap: 16px; }
+        .token-card { grid-column: 1; grid-row: 1 / span 2; }
+      }
+      .book h3 { font-size: 18px; font-weight: 750; line-height: 1.3; letter-spacing: -0.01em; }
+
+      .token-card {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        padding: 22px;
+        border-radius: 24px;
+        color: #fff;
+        background:
+          radial-gradient(circle at 100% 0%, rgba(255, 255, 255, 0.16), transparent 42%),
+          linear-gradient(155deg, #2563eb 0%, #1a56db 45%, #123f9e 100%);
+        box-shadow: 0 24px 48px -24px rgba(26, 86, 219, 0.75);
+      }
+      .token-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+      .token-kind { font-size: 13px; font-weight: 600; color: rgba(255, 255, 255, 0.82); }
+      .live-pill {
+        display: inline-flex; align-items: center; gap: 6px; flex: none;
+        padding: 4px 10px; border-radius: 999px;
+        background: rgba(255, 255, 255, 0.16);
+        font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+      }
+      .live-pill i { position: relative; width: 7px; height: 7px; border-radius: 50%; background: #4ade80; }
+      .live-pill i::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: inherit; animation: ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite; }
+      .token-card h3 { margin-top: 14px; font-size: clamp(1.35rem, 4vw, 1.6rem); font-weight: 800; letter-spacing: -0.02em; }
+      .token-sub { margin-top: 6px; font-size: 15px; line-height: 1.5; color: rgba(255, 255, 255, 0.85); text-wrap: pretty; }
+      .ticket {
+        margin-top: 18px;
+        display: flex;
+        align-items: stretch;
+        border-radius: 16px;
+        background: #fff;
+        color: #1f2a44;
+        box-shadow: 0 12px 24px -14px rgba(0, 0, 0, 0.45);
+      }
+      .ticket-no {
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        padding: 10px 22px;
+        border-right: 2px dashed #d6dcea;
+      }
+      .ticket-no span { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #6b7280; }
+      .ticket-no b { font-size: 44px; font-weight: 800; line-height: 1; color: #1a56db; letter-spacing: -0.03em; }
+      .ticket-side { display: flex; flex-direction: column; justify-content: center; padding: 12px 18px; min-width: 0; }
+      .ticket-side b { font-size: 16px; font-weight: 700; }
+      .ticket-side span { font-size: 14px; color: #535d75; }
+      .queue { margin: 18px 0 14px; }
+      .queue-dots { display: flex; gap: 6px; padding: 18px 0 0; margin: 0; list-style: none; }
+      .queue-dots li {
+        position: relative;
+        flex: 1 1 0;
+        max-width: 44px;
+        height: 36px;
+        display: grid;
+        place-items: center;
+        border-radius: 11px;
+        background: rgba(255, 255, 255, 0.14);
+        font-size: 14px;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+        transition: background-color 0.4s ease, color 0.4s ease, opacity 0.4s ease;
+      }
+      .queue-dots li.seen { opacity: 0.45; }
+      .queue-dots li.now { background: #fff; color: #1a56db; box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.6); animation: now-ring 1.8s ease-out infinite; }
+      .queue-dots li.you { background: transparent; outline: 2px dashed #ffb366; outline-offset: -2px; }
+      .queue-dots li.you::after {
+        content: "You";
+        position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
+        font-size: 11px; font-weight: 700; color: #ffc48a; letter-spacing: 0.02em;
+      }
+      .queue-line { margin-top: 12px; display: flex; justify-content: space-between; gap: 12px; font-size: 14px; color: rgba(255, 255, 255, 0.85); }
+      .queue-line b { color: #fff; font-variant-numeric: tabular-nums; }
+      .token-foot { margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.16); font-size: 14px; font-weight: 600; text-wrap: balance; }
+
+      .book-card {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        padding: 18px;
+        border-radius: 20px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+      }
+      .book-card .tile { margin-bottom: 8px; }
+      .book-say { font-size: 14px; font-weight: 650; color: var(--primary-text); }
+      .book-eg { margin-top: 2px; font-size: 14px; line-height: 1.45; color: var(--muted); }
+      .steps {
+        margin: 12px 0 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        width: 100%;
+      }
+      .steps li {
+        position: relative;
+        flex: 1;
+        padding-top: 18px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--muted);
+        text-align: center;
+      }
+      .steps li::before {
+        content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+        width: 12px; height: 12px; border-radius: 50%;
+        background: var(--bg); border: 2px solid var(--border); box-sizing: border-box; z-index: 1;
+      }
+      .steps li + li::after {
+        content: ""; position: absolute; top: 5px; right: 50%; width: 100%; height: 2px; background: var(--border);
+      }
+      .steps li.done, .steps li.now { color: var(--ink); }
+      .steps li.done::before { background: var(--primary-text); border-color: var(--primary-text); }
+      .steps li.now::before { border-color: var(--primary-text); animation: step-ring 1.8s ease-out infinite; }
+      .steps li.done + li::after, .steps li.done + li.now::after { background: var(--primary-text); }
+      .slot { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; }
+      .slot span, .slot b {
+        display: inline-flex; align-items: center; gap: 6px;
+        padding: 6px 11px; border-radius: 999px; font-size: 13px; font-weight: 600;
+      }
+      .slot svg { width: 15px; height: 15px; }
+      .slot span { background: var(--tile); color: var(--primary-text); }
+      .slot b { background: var(--tile-green); color: var(--green-text); }
+      @media (max-width: 599px) {
+        .book-card { padding: 16px 14px; }
+        .book-card h3 { font-size: 16px; }
+        .book-eg { font-size: 13px; }
+        .steps, .slot { display: none; }
+      }
+
+      .promises {
+        margin: 16px 0 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px 22px;
+      }
+      .promises li { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 550; color: var(--ink); }
+      .promises svg { width: 18px; height: 18px; color: var(--green-text); flex: none; }
+      .zero {
+        display: inline-grid; place-items: center; height: 20px; padding: 0 5px; border-radius: 6px;
+        background: var(--tile-green); color: var(--green-text); font-style: normal; font-size: 11px; font-weight: 800;
+      }
+      @media (max-width: 599px) {
+        .promises { flex-direction: column; align-items: flex-start; padding: 4px 4px 0; }
+      }
 
       /* ---------- What it does ---------- */
       .features {
@@ -496,7 +687,7 @@
       .f2 { right: 0; top: 128px; rotate: 3deg; animation-delay: 0.65s, 1.2s; }
       .f3 { left: 56px; top: 380px; rotate: 2.5deg; animation-delay: 0.8s, 2.4s; }
       .f4 { right: 40px; top: 400px; rotate: -3deg; animation-delay: 0.95s, 0.6s; }
-      .f3 .tile { background: var(--tile-orange); color: var(--orange-text); }
+      .f3 .tile { background: var(--tile-green); color: var(--green-text); }
 
       /* ---------- Arrival ---------- */
       .reveal { animation: rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both; animation-delay: calc(var(--i, 0) * 90ms); }
@@ -506,6 +697,8 @@
       @keyframes ping { 0% { transform: scale(1); opacity: 0.55; } 80%, 100% { transform: scale(3.6); opacity: 0; } }
       @keyframes drift { to { transform: translate(6vmax, 4vmax) scale(1.08); } }
       @keyframes word-in { from { transform: translateY(75%); opacity: 0; } to { transform: none; opacity: 1; } }
+      @keyframes now-ring { 0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.55); } 100% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); } }
+      @keyframes step-ring { 0% { box-shadow: 0 0 0 0 rgba(26, 86, 219, 0.45); } 100% { box-shadow: 0 0 0 8px rgba(26, 86, 219, 0); } }
       @keyframes marquee { to { transform: translateX(calc(-100% - 10px)); } }
       @keyframes word-out { to { transform: translateY(-75%); opacity: 0; } }
 
@@ -554,8 +747,8 @@
           <div><b>Used scooter</b><span><i class="open"></i>For sale · ₹38,000 · 2 km away</span></div>
         </div>
         <div class="fcard f3">
-          <span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg></span>
-          <div><b>New job nearby</b><span>Shop assistant · Full time</span></div>
+          <span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M9 15l2 2 4-4"/></svg></span>
+          <div><b>Dentist · Confirmed</b><span>Tomorrow · 11:30 am</span></div>
         </div>
         <div class="fcard f4">
           <span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2M15 18H9M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg></span>
@@ -619,13 +812,13 @@
         <h1 class="reveal" style="--i:2">
           <span class="line">Find</span>
           <span class="rotator" id="rotator" aria-hidden="true"><span class="word">a new iPhone</span></span>
-          <span class="sr-only">trusted local businesses, professionals, jobs and things for sale, new and used</span>
+          <span class="sr-only">trusted local businesses, professionals, jobs and things for sale, and book them</span>
           <span class="line">near you.</span>
         </h1>
 
         <p class="lead reveal" style="--i:3">
           <strong>Businesses, professionals, jobs and things for sale, new and used, all in one place.</strong>
-          Search your town, compare real reviews, then call, message, or get it delivered.
+          Call, message or book them directly, or get it delivered.
         </p>
 
         <div class="countdown reveal" style="--i:4" id="countdown" role="timer" aria-label="Time until Findigo opens" hidden>
@@ -636,7 +829,7 @@
         </div>
 
         <div class="actions reveal" style="--i:5">
-          <a class="btn btn-primary" id="share" href="https://wa.me/?text=Findigo%20is%20launching%20soon%3A%20find%20trusted%20businesses%2C%20professionals%2C%20jobs%20and%20things%20for%20sale%20near%20you%2C%20with%20delivery%20from%20local%20stores.%20https%3A%2F%2Ffindigo.in" target="_blank" rel="noopener">
+          <a class="btn btn-primary" id="share" href="https://wa.me/?text=Findigo%20is%20launching%20soon%3A%20find%20trusted%20businesses%2C%20professionals%20and%20jobs%20near%20you%2C%20book%20visits%2C%20appointments%20and%20doctor%27s%20tokens%2C%20and%20buy%20new%20and%20used%20things.%20https%3A%2F%2Ffindigo.in" target="_blank" rel="noopener">
             <svg class="icon-wa" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
             <svg class="icon-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden><path d="M12 3v12M7.5 7.5 12 3l4.5 4.5M5 13v5.5A2.5 2.5 0 0 0 7.5 21h9a2.5 2.5 0 0 0 2.5-2.5V13"/></svg>
             <span id="share-label">Share on WhatsApp</span>
@@ -658,102 +851,171 @@
       <section class="cats reveal" style="--i:7" aria-label="What you'll find on Findigo">
         <div class="marquee">
           <ul class="track" aria-label="Businesses and professionals">
-            <li class="chip">Restaurants &amp; cafés</li>
-            <li class="chip">Cooks</li>
-            <li class="chip">Bakers &amp; cake stores</li>
+            <li class="chip">Clinics &amp; hospitals</li>
+            <li class="chip">Heart doctors</li>
+            <li class="chip">Dentists</li>
+            <li class="chip">Scan &amp; imaging centres</li>
+            <li class="chip">Diagnostic labs</li>
+            <li class="chip">Home nursing &amp; elder care</li>
             <li class="chip">Salons</li>
             <li class="chip">Makeup artists</li>
+            <li class="chip">Beauty services at home</li>
             <li class="chip">Gyms &amp; trainers</li>
             <li class="chip">Yoga classes</li>
-            <li class="chip">Doctors &amp; clinics</li>
-            <li class="chip">Dentists</li>
-            <li class="chip">Pharmacies</li>
-            <li class="chip">Wedding planners</li>
+            <li class="chip">Sports turfs &amp; courts</li>
+            <li class="chip">Coaching centres</li>
+            <li class="chip">Tutors &amp; tuition classes</li>
+            <li class="chip">Music, dance &amp; art classes</li>
+            <li class="chip">Schools &amp; preschools</li>
+            <li class="chip">Restaurants</li>
+            <li class="chip">Cafés</li>
+            <li class="chip">Cooks</li>
+            <li class="chip">Bakers &amp; cake stores</li>
+            <li class="chip">Caterers</li>
+            <li class="chip">Wedding &amp; event planners</li>
             <li class="chip">Photographers</li>
             <li class="chip">Venues &amp; banquet halls</li>
-            <li class="chip">Decorators</li>
-            <li class="chip">Hotels &amp; homestays</li>
-            <li class="chip">Houseboats</li>
+            <li class="chip">Hotels &amp; guest houses</li>
+            <li class="chip">PGs &amp; hostels</li>
             <li class="chip">Tour guides</li>
             <li class="chip">Taxis &amp; cabs</li>
-            <li class="chip">Lawyers</li>
-            <li class="chip">Chartered accountants</li>
+            <li class="chip">Graphic designers</li>
             <li class="chip">Web &amp; app developers</li>
-            <li class="chip">Tutors &amp; coaching</li>
             <li class="chip">Architects</li>
             <li class="chip">Interior designers</li>
-            <li class="chip">Kashmiri handicrafts</li>
+            <li class="chip">Car dealers</li>
             <li class="chip">Jobs near you</li>
           </ul>
           <ul class="track" aria-hidden="true">
-            <li class="chip">Restaurants &amp; cafés</li>
-            <li class="chip">Cooks</li>
-            <li class="chip">Bakers &amp; cake stores</li>
+            <li class="chip">Clinics &amp; hospitals</li>
+            <li class="chip">Heart doctors</li>
+            <li class="chip">Dentists</li>
+            <li class="chip">Scan &amp; imaging centres</li>
+            <li class="chip">Diagnostic labs</li>
+            <li class="chip">Home nursing &amp; elder care</li>
             <li class="chip">Salons</li>
             <li class="chip">Makeup artists</li>
+            <li class="chip">Beauty services at home</li>
             <li class="chip">Gyms &amp; trainers</li>
             <li class="chip">Yoga classes</li>
-            <li class="chip">Doctors &amp; clinics</li>
-            <li class="chip">Dentists</li>
-            <li class="chip">Pharmacies</li>
-            <li class="chip">Wedding planners</li>
+            <li class="chip">Sports turfs &amp; courts</li>
+            <li class="chip">Coaching centres</li>
+            <li class="chip">Tutors &amp; tuition classes</li>
+            <li class="chip">Music, dance &amp; art classes</li>
+            <li class="chip">Schools &amp; preschools</li>
+            <li class="chip">Restaurants</li>
+            <li class="chip">Cafés</li>
+            <li class="chip">Cooks</li>
+            <li class="chip">Bakers &amp; cake stores</li>
+            <li class="chip">Caterers</li>
+            <li class="chip">Wedding &amp; event planners</li>
             <li class="chip">Photographers</li>
             <li class="chip">Venues &amp; banquet halls</li>
-            <li class="chip">Decorators</li>
-            <li class="chip">Hotels &amp; homestays</li>
-            <li class="chip">Houseboats</li>
+            <li class="chip">Hotels &amp; guest houses</li>
+            <li class="chip">PGs &amp; hostels</li>
             <li class="chip">Tour guides</li>
             <li class="chip">Taxis &amp; cabs</li>
-            <li class="chip">Lawyers</li>
-            <li class="chip">Chartered accountants</li>
+            <li class="chip">Graphic designers</li>
             <li class="chip">Web &amp; app developers</li>
-            <li class="chip">Tutors &amp; coaching</li>
             <li class="chip">Architects</li>
             <li class="chip">Interior designers</li>
-            <li class="chip">Kashmiri handicrafts</li>
+            <li class="chip">Car dealers</li>
             <li class="chip">Jobs near you</li>
           </ul>
         </div>
         <div class="marquee sale reverse">
           <ul class="track" aria-label="Things for sale, new and used">
             <li class="chip">Mobiles &amp; tablets</li>
-            <li class="chip">Laptops &amp; computers</li>
             <li class="chip">Electronics &amp; appliances</li>
             <li class="chip">Furniture</li>
             <li class="chip">Home &amp; kitchen</li>
             <li class="chip">Fashion</li>
-            <li class="chip">Jewellery</li>
-            <li class="chip">Shawls &amp; pashmina</li>
-            <li class="chip">Carpets &amp; rugs</li>
             <li class="chip">Cars</li>
             <li class="chip">Bikes &amp; scooters</li>
             <li class="chip">Bicycles</li>
             <li class="chip">Books &amp; study</li>
             <li class="chip">Sports &amp; hobbies</li>
             <li class="chip">Kids &amp; baby</li>
-            <li class="chip">Spare parts</li>
-            <li class="chip">Gifts</li>
+            <li class="chip">Spare parts &amp; accessories</li>
+            <li class="chip">Building materials</li>
+            <li class="chip">Deals</li>
           </ul>
           <ul class="track" aria-hidden="true">
             <li class="chip">Mobiles &amp; tablets</li>
-            <li class="chip">Laptops &amp; computers</li>
             <li class="chip">Electronics &amp; appliances</li>
             <li class="chip">Furniture</li>
             <li class="chip">Home &amp; kitchen</li>
             <li class="chip">Fashion</li>
-            <li class="chip">Jewellery</li>
-            <li class="chip">Shawls &amp; pashmina</li>
-            <li class="chip">Carpets &amp; rugs</li>
             <li class="chip">Cars</li>
             <li class="chip">Bikes &amp; scooters</li>
             <li class="chip">Bicycles</li>
             <li class="chip">Books &amp; study</li>
             <li class="chip">Sports &amp; hobbies</li>
             <li class="chip">Kids &amp; baby</li>
-            <li class="chip">Spare parts</li>
-            <li class="chip">Gifts</li>
+            <li class="chip">Spare parts &amp; accessories</li>
+            <li class="chip">Building materials</li>
+            <li class="chip">Deals</li>
           </ul>
         </div>
+      </section>
+
+
+      <section class="book" aria-labelledby="book-title">
+        <div class="book-head reveal" style="--i:8">
+          <p class="eyebrow">Book in a few taps</p>
+          <h2 id="book-title">Visits, appointments and doctor's tokens</h2>
+          <p>Book right from their profile. They confirm the time, and booking is free.</p>
+        </div>
+
+        <div class="book-grid">
+          <article class="token-card reveal" style="--i:9">
+            <div class="token-top">
+              <span class="token-kind">Doctors, clinics and hospitals</span>
+              <span class="live-pill"><i></i>Live</span>
+            </div>
+            <h3>Get a token online</h3>
+            <p class="token-sub">Pick a session and get your number. At a hospital, choose your doctor first.</p>
+            <div class="ticket" aria-hidden="true">
+              <div class="ticket-no"><span>Token</span><b>7</b></div>
+              <div class="ticket-side"><b>Evening session</b><span>Today · 4:30–8 pm</span></div>
+            </div>
+            <div class="queue" aria-hidden="true">
+              <ol class="queue-dots" id="queue">
+                <li data-n="3">3</li>
+                <li data-n="4">4</li>
+                <li data-n="5">5</li>
+                <li data-n="6">6</li>
+                <li data-n="7">7</li>
+                <li data-n="8">8</li>
+                <li data-n="9">9</li>
+              </ol>
+              <p class="queue-line"><span>Now seeing <b id="q-now">5</b></span><span><b id="q-ahead">2</b> ahead of you</span></p>
+            </div>
+            <p class="token-foot">See the line live and leave home at the right time.</p>
+          </article>
+
+          <article class="book-card reveal" style="--i:10">
+            <span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5"/></svg></span>
+            <h3>Book a visit</h3>
+            <p class="book-say">They come to you</p>
+            <p class="book-eg">Cooks, home tutors, makeup at home, home nursing, photographers</p>
+            <ol class="steps" aria-hidden="true"><li class="done">Sent</li><li class="done">Confirmed</li><li class="now">On the way</li><li>Done</li></ol>
+          </article>
+
+          <article class="book-card reveal" style="--i:11">
+            <span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg></span>
+            <h3>Book an appointment</h3>
+            <p class="book-say">You go to them</p>
+            <p class="book-eg">Doctors, dentists, salons, coaching centres, scan centres</p>
+            <div class="slot" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>Sat · 4:30 pm</span><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.8 2.8L16 9.5"/></svg>Confirmed</b></div>
+          </article>
+        </div>
+
+        <ul class="promises reveal" style="--i:12">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.8 2.8L16 9.5"/></svg><span>Nothing is booked until they confirm</span></li>
+          <li><i class="zero" aria-hidden="true">₹0</i><span>Booking is free</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7.5" cy="15.5" r="4.5"/><path d="m10.7 12.3 9.8-9.8M17.5 5.5l3 3M14.5 8.5l2 2"/></svg><span>A private visit code puts every visit on record</span></li>
+        </ul>
       </section>
 
       <ul class="features" aria-label="What you can do on Findigo">
@@ -767,7 +1029,7 @@
         </li>
         <li class="feature reveal" style="--i:10">
           <span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 20.5l1.6-5.2A8.5 8.5 0 1 1 21 11.5z"/></svg></span>
-          <div><b>Call or message</b><span>Talk to them directly. Free, no middleman.</span></div>
+          <div><b>Call, message or book</b><span>Deal with them directly. No middleman.</span></div>
         </li>
       </ul>
 
@@ -784,7 +1046,7 @@
 
       <aside class="biz reveal" style="--i:13" aria-label="For business owners">
         <span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 9 5 4h14l1.5 5"/><path d="M3.5 9a2.8 2.8 0 0 0 5.67 0 2.8 2.8 0 0 0 5.66 0 2.8 2.8 0 0 0 5.67 0"/><path d="M5 11.5V20h14v-8.5M10 20v-5h4v5"/></svg></span>
-        <div><b>Own a business?</b><span>Listing is free. Add your products, take delivery requests, and be first in your town.</span></div>
+        <div><b>Own a business?</b><span>Listing is free. Take bookings, sell your products and deliver. Be first in your town.</span></div>
       </aside>
       </div>
 
@@ -794,7 +1056,7 @@
     <script>
       (function () {
         var SITE = "https://findigo.in";
-        var MESSAGE = "Findigo is launching soon: find trusted businesses, professionals, jobs and things for sale near you, with delivery from local stores.";
+        var MESSAGE = "Findigo is launching soon: find trusted businesses, professionals and jobs near you, book visits, appointments and doctor's tokens, and buy new and used things.";
         var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         var status = document.getElementById("status");
 
@@ -802,11 +1064,12 @@
 
         /* The word in the headline. */
         var words = [
-          "a new iPhone", "a makeup artist", "your dream job", "a used car", "a birthday cake",
-          "a web designer", "a bridal lehenga", "a cook", "a houseboat", "a comfy sofa",
-          "a home tutor", "a pashmina", "a cosy café", "a photographer", "a new laptop",
-          "a skin doctor", "a yoga class", "a party venue", "an architect", "a cricket bat",
-          "a tour guide", "a part-time job", "great deals"
+          "a new iPhone", "a heart doctor", "your dream job", "a makeup artist", "a used car",
+          "a dance class", "a birthday cake", "a dentist", "a home tutor", "a bridal lehenga",
+          "a sports turf", "a cook", "a comfy sofa", "a scan centre", "a photographer",
+          "a PG to stay", "a new laptop", "a yoga class", "a web designer", "a party venue",
+          "a cosy café", "a skin doctor", "an architect", "a cricket bat", "a tour guide",
+          "a part-time job", "great deals"
         ];
         var rotator = document.getElementById("rotator");
         var current = rotator.querySelector(".word");
@@ -823,6 +1086,28 @@
           current = next;
           setTimeout(function () { if (old.parentNode) old.parentNode.removeChild(old); }, reduceMotion ? 0 : 500);
         }, reduceMotion ? 3200 : 2300);
+
+        /* The token card's line: now seeing 4, 5, 6 and round again; you stay 7. */
+        var queue = document.getElementById("queue");
+        var qNowEl = document.getElementById("q-now");
+        var qAheadEl = document.getElementById("q-ahead");
+        var you = 7, seeing = 5;
+        var drawQueue = function () {
+          Array.prototype.forEach.call(queue.children, function (li) {
+            var n = Number(li.getAttribute("data-n"));
+            li.className = n < seeing ? "seen" : n === seeing ? "now" : n === you ? "you" : "";
+          });
+          qNowEl.textContent = String(seeing);
+          qAheadEl.textContent = String(you - seeing);
+        };
+        drawQueue();
+        if (!reduceMotion) {
+          setInterval(function () {
+            if (document.hidden) return;
+            seeing = seeing >= 6 ? 4 : seeing + 1;
+            drawQueue();
+          }, 2600);
+        }
 
         /* An optional countdown: set data-launch on <main> to a time such as 2026-12-01T10:00:00+05:30. */
         var main = document.getElementById("main");
