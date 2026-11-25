@@ -1,6 +1,6 @@
 # findigo-site
 
-The "Launching soon" page that findigo.in shows until the Findigo app goes live. One plain HTML file, no build step.
+The "Launching soon" page at soon.findigo.in, while the Findigo app runs on findigo.in. One plain HTML file, no build step.
 
 ## Changing the page
 
@@ -16,7 +16,7 @@ Preview on your machine: `python3 -m http.server 8080`, then open http://localho
 ## Setup
 
 1. **Settings → Pages → Build and deployment**: Source **Deploy from a branch**, branch **main**, folder **/ (root)**, Save.
-2. The custom domain comes from the `CNAME` file (`findigo.in`). Once the DNS check passes, tick **Enforce HTTPS**.
+2. The custom domain comes from the `CNAME` file (`soon.findigo.in`). Once the DNS check passes, tick **Enforce HTTPS**.
 3. At the domain registrar, remove any other records on `@` and `www`, then add:
 
 | Type | Name | Value |
